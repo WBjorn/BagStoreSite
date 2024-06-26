@@ -12,10 +12,11 @@ class LayoutAndStylingTest(FunctionalTest):
         self.browser.set_window_size(1480, 800)
 
         # Он замечает, что на страницу отображается картинка
-        self.browser.find_element(By.TAG_NAME, 'src')
+        main_img = self.browser.find_element(By.ID, 'main_img')
+        self.assertAlmostEqual(main_img.location['x'], 260, delta=10)
         # Тут же отображается текст
         main_text = self.browser.find_element(By.ID, 'main_text')
-        self.assertAlmostEqual(main_text.location['x'], 760, delta=10)
+        self.assertAlmostEqual(main_text.location['x'], 700, delta=10)
         self.assertAlmostEqual(main_text.location['y'], 300, delta=10)
 
         # Вверху страницы он замечает лого

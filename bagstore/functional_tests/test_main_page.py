@@ -16,10 +16,10 @@ class MainPageTest(FunctionalTest):
         self.browser.find_element(By.LINK_TEXT, 'Магазин').click()
 
         # Сайт переносит его в магазин
-        self.assertEqual(self.browser.current_url, reverse('shop'))
+        self.assertRegex(self.browser.current_url, reverse('shop'))
         
     def test_shopping_cart_button(self):
-        '''Тест: кнопка "корзин" переносит пользователя в его корзину'''
+        '''Тест: кнопка "корзина" переносит пользователя в его корзину'''
         # Билл заходит на сайт
         self.browser.get(self.live_server_url)
         

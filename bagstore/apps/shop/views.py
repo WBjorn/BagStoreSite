@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+class MainPageView(TemplateView):
+    '''Отображение главной страницы'''
+    template_name = 'index.html'
+
+class ShopPageView(TemplateView):
+    '''Отображение магазина'''
+    template_name = 'shop.html'
+    

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bag Store</title>
+    {% block link %}
+        <link href="static/shop/styles/main.css" rel="stylesheet">
+    {% endblock link %}
+</head>
+<body>
+    <div class="center">
+        <header>
+            {% block header %}
+                <div class="logo">
+                    <a href="#"><span>Bag Store</span></a>
+                </div>
+                <div class="first_menu site_menu">
+                    <a href="{% url 'shop' %}"><span>Магазин</span></a>
+                </div>
+                <div class="site_menu">
+                    <a href="#"><span>Корзина</span></a>
+                </div>
+            {% endblock header %}
+        </header>
+        <main>
+            {% block main %}
+            {% endblock main %}
+        </main>
+        <footer>
+            {% block footer %}
+            {% endblock footer %}
+        </footer>
+    </div>
+</body>
+</html>

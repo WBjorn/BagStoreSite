@@ -1,0 +1,43 @@
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 1280px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #ff6baf;
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+}
+
+.site_menu span {
+    color: #ff6baf;
+    margin: 0 0 0 30px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+}
+
+.site_menu span:hover {
+    color: #9A5776;
+}
+
+.site_menu a:hover {
+    text-decoration: underline;
+    text-decoration-color: #9A5776;
+}
+
+.first_menu span {
+    margin: 0 0 0 60px;
+}
+
