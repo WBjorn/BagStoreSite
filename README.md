@@ -29,4 +29,6 @@ $ poetry shell
 Если вы используете другую БД, то в файле `bagstore/bagstore/settings.py` замените `DATABASES` на свою.
 
 Также необходимо добавить в директорию `bagstore/config` добавить файл `.env` и в нем прописать:
-- SECRET_KEY="*ваш секретный ключ*"
+```python
+SECRET_KEY="ваш секретный ключ"
+```
