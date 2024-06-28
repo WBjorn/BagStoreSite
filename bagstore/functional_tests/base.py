@@ -2,6 +2,7 @@ import time
 import os
 
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.webdriver import WebDriver
 
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
@@ -32,3 +33,22 @@ class FunctionalTest(StaticLiveServerTestCase):
                 if time.time() - start_time > MAX_WAIT:
                     raise e
                 time.sleep(0.5)
+
+    def the_correct_location_of_the_navigation_buttons(self):
+        '''Корректное расположение кнопок навигации'''
+        # Проверка расположения лого
+        logo = self.browser.find_element(By.ID, 'logo')
+        self.assertAlmostEqual(logo.location['x'], 100, delta=10)
+        self.assertAlmostEqual(logo.location['y'], 50, delta=10)
+
+        # Проверка расположения кнопки "Магазин"
+        shop = self.browser.find_element(By.LINK_TEXT, 'Магазин')
+        self.assertAlmostEqual(shop.location['x'], 380, delta=10)
+        self.assertAlmostEqual(logo.location['y'], 50, delta=10)
+
+        # Проверка расположения кнопки "Корзина"
+        cart = self.browser.find_element(By.LINK_TEXT, 'Корзина')
+        self.assertAlmostEqual(
+            cart.location['x'] - shop.location['x'], 60, delta=10)
+        # Кнопки навигации расположены на одном уровне
+        self.assertAlmostEqual(shop.location['y'], cart.location['y'])

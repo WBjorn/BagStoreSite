@@ -1,12 +1,11 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 
 from .base import FunctionalTest
 
 class LayoutAndStylingTest(FunctionalTest):
     '''Тест макета и стилевого оформления'''
-    def test_layout_and_styling(self):
-        '''Тест: макет и стилевое оформление'''
+    def test_layout_and_styling_main_page(self):
+        '''Тест: макет и стилевое оформление главной страницы'''
         # Билл открывает главную страницу
         self.browser.get(self.live_server_url)
         self.browser.set_window_size(1480, 800)
@@ -19,17 +18,45 @@ class LayoutAndStylingTest(FunctionalTest):
         self.assertAlmostEqual(main_text.location['x'], 700, delta=10)
         self.assertAlmostEqual(main_text.location['y'], 300, delta=10)
 
-        # Вверху страницы он замечает лого
-        logo = self.browser.find_element(By.ID, 'logo')
-        self.assertAlmostEqual(logo.location['x'], 100, delta=10)
+        # Билл видит аккуратное меню навигация в левом верхнем углу
+        self.the_correct_location_of_the_navigation_buttons(self)
 
-        # Рядом с лого расположены кнопки меню
-        shop = self.browser.find_element(By.LINK_TEXT, 'Магазин')
-        self.assertAlmostEqual(shop.location['x'], 380, delta=10)
+    def test_layout_and_styling_shop_page(self):
+        '''Тест: макет и стилевое оформление страницы магазин'''
+        # Билл открывает главную страницу и переходит в раздел "Магазин"
+        self.browser.get(self.live_server_url)
+        self.browser.find_element(By.LINK_TEXT, 'Магазин').click()
 
-        # Между ними примерно 60 px
-        cart = self.browser.find_element(By.LINK_TEXT, 'Корзина')
-        self.assertAlmostEqual(cart.location['x'] - shop.location['x'], 60, delta=10)
+        # Здесь билл так же видит лого и кнопки меню рядом с ним
+        self.the_correct_location_of_the_navigation_buttons(self)
+
+        # Билл видит карточки товаров
+        products = self.browser.find_elements(By.CLASS_NAME, 'product_card')
+        # Первая и вторая карточка расположены рядом друг с другом
+        first = products[0]
+        second = products[1]
+        # вторая карточка справа от первой карточки 
+        # и они располагаются на одном уровне
+        self.assertAlmostEqual(
+            first.location['x'] + first.size['width'], 
+            second.location['x'], 
+            delta=40
+        )
+        self.assertEqual(first.location['y'], second.location['y'])
         
-        # Кнопки расположены на одном уровне
-        self.assertAlmostEqual(shop.location['y'], cart.location['y'])
+        third = products[2]
+        # Третья карточка расоложена слева под первой карточкой
+        self.assertEqual(first.location['x'], third.location['x'])
+        self.assertEqual(first.location['y'] + first.size['width'], third.location['y'], delta=40)
+        
+    def test_layout_and_styling_cart_page(self):
+        '''Тест: макет и стилевое оформление страницы корзины'''
+                # Билл открывает главную страницу и переходит в раздел "Магазин"
+        self.browser.get(self.live_server_url)
+        self.browser.find_element(By.LINK_TEXT, 'Корзина').click()
+
+        # Здесь билл так же видит лого и кнопки меню рядом с ним
+        self.the_correct_location_of_the_navigation_buttons(self)
+
+        self.fail('доделать тест')
+        
