@@ -11,7 +11,7 @@ class LayoutAndStylingTest(FunctionalTest):
         self.browser.set_window_size(1480, 800)
 
         # Билл видит аккуратное меню навигация в левом верхнем углу
-        self.the_correct_location_of_the_navigation_buttons(self)
+        self.the_correct_location_of_the_navigation_buttons()
 
         # Он замечает, что на страницу отображается картинка
         main_img = self.browser.find_element(By.CSS_SELECTOR, 'main_img')
@@ -37,7 +37,7 @@ class LayoutAndStylingTest(FunctionalTest):
         self.browser.find_element(By.LINK_TEXT, SHOP_BUTTON).click()
 
         # Здесь билл так же видит лого и кнопки меню рядом с ним
-        self.the_correct_location_of_the_navigation_buttons(self)
+        self.the_correct_location_of_the_navigation_buttons()
 
         # Билл видит карточки товаров
         products = self.browser.find_elements(By.CLASS_NAME, 'product_card')

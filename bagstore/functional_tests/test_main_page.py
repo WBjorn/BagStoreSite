@@ -27,4 +27,4 @@ class MainPageTest(FunctionalTest):
         self.browser.find_element(By.LINK_TEXT, 'Корзина').click()
 
         # Сайт переносит его в корзину
-        self.assertEqual(self.browser.current_url, reverse('shopping_cart'))
+        self.assertRegex(self.browser.current_url, reverse('shopping_cart'))
