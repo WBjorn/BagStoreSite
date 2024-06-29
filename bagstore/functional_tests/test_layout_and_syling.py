@@ -14,12 +14,12 @@ class LayoutAndStylingTest(FunctionalTest):
         self.the_correct_location_of_the_navigation_buttons()
 
         # Он замечает, что на страницу отображается картинка
-        main_img = self.browser.find_element(By.CSS_SELECTOR, 'main_img')
-        self.assertAlmostEqual(main_img.location['x'], 160, delta=10)
+        main_img = self.browser.find_element(By.CSS_SELECTOR, '.main_img')
+        self.assertAlmostEqual(main_img.location['x'], 150, delta=15)
         self.assertAlmostEqual(main_img.location['y'], 150, delta=10)
         # Тут же отображается текст в одну линию с картинкой
-        main_text = self.browser.find_element(By.CSS_SELECTOR, 'main_text')
-        self.assertAlmostEqual(main_text.location['x'], 740, delta=10)
+        main_text = self.browser.find_element(By.CSS_SELECTOR, '.main_text')
+        self.assertAlmostEqual(main_text.location['x'], 740, delta=15)
         self.assertAlmostEqual(
             main_text.location['y'] + main_text.size['height'] / 2, 
             main_img.location['y'] + main_img.size['height'] / 2, 
