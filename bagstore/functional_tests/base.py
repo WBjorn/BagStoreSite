@@ -8,6 +8,8 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 MAX_WAIT = 10
+SHOP_BUTTON = 'Магазин'
+CART_BUTTON = 'Корзина'
 
 class FunctionalTest(StaticLiveServerTestCase):
     '''Функциональный тест'''
@@ -42,12 +44,12 @@ class FunctionalTest(StaticLiveServerTestCase):
         self.assertAlmostEqual(logo.location['y'], 50, delta=10)
 
         # Проверка расположения кнопки "Магазин"
-        shop = self.browser.find_element(By.LINK_TEXT, 'Магазин')
+        shop = self.browser.find_element(By.LINK_TEXT, SHOP_BUTTON)
         self.assertAlmostEqual(shop.location['x'], 380, delta=10)
         self.assertAlmostEqual(logo.location['y'], 50, delta=10)
 
         # Проверка расположения кнопки "Корзина"
-        cart = self.browser.find_element(By.LINK_TEXT, 'Корзина')
+        cart = self.browser.find_element(By.LINK_TEXT, CART_BUTTON)
         self.assertAlmostEqual(
             cart.location['x'] - shop.location['x'], 60, delta=10)
         # Кнопки навигации расположены на одном уровне
